@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b1220">
+    <meta name="description" content="LABFLOW - Secure diagnostic report delivery portal">
+
+```
+<title>LABFLOW | Diagnostic Portal</title>
+<link rel="stylesheet" href="/static/style.css">
+```
+
+</head>
+
+<body>
+<header>
+    <div>
+        <b class="brand">LAB<span>FLOW</span></b>
+        <small>Diagnostic Report Delivery Portal</small>
+    </div>
+    <div class="header-status">
+        <span class="status-dot"></span>
+        Secure Portal
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <p class="eyebrow">LAB OPERATIONS · PATIENT ACCESS</p>
+        <h1>Your reports.<br><span>Safely delivered.</span></h1>
+        <p class="muted">Access diagnostic reports through a secure, simple and reliable digital experience.</p>
+        <div class="hero-badges">
+            <span>Secure OTP Access</span>
+            <span>Digital Reports</span>
+            <span>Privacy Focused</span>
+        </div>
+    </section>
+
+```
+<nav aria-label="Portal navigation">
+    <button class="active" data-tab="patient">Patient Portal</button>
+    <button data-tab="staff">Front Desk</button>
+    <button data-tab="doctor">Doctor Portal</button>
+    <button data-tab="pathologist">Pathologist</button>
+</nav>
+
+<!-- Patient Portal -->
+<section id="patient">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">PATIENT SERVICES</p>
+            <h2>Access your reports</h2>
+            <p class="muted">Verify your registered mobile number to continue.</p>
+        </div>
+    </div>
+
+    <div class="grid">
+        <!-- Send OTP -->
+        <article>
+            <div class="card-number">01</div>
+            <h3>Mobile Verification</h3>
+
+            <label for="mobile">Registered mobile number</label>
+            <input
+                id="mobile"
+                type="tel"
+                value="9000000001"
+                placeholder="Enter mobile number"
+                autocomplete="tel"
+            >
+
+            <button id="send" type="button">Send OTP →</button>
+            <p class="hint">Demo OTP will be printed in the VS Code terminal.</p>
+        </article>
+
+        <!-- Verify OTP -->
+        <article>
+            <div class="card-number">02</div>
+            <h3>OTP Verification</h3>
+
+            <label for="otp">6-digit verification code</label>
+            <input
+                id="otp"
+                type="text"
+                inputmode="numeric"
+                maxlength="6"
+                placeholder="Enter OTP"
+                autocomplete="one-time-code"
+            >
+
+            <button id="verify" type="button">Verify OTP →</button>
+            <div id="profiles"></div>
+        </article>
+    </div>
+
+    <!-- Patient Orders -->
+    <article id="orders" class="hide">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">REPORT MANAGEMENT</p>
+                <h3>Your Diagnostic Orders</h3>
+            </div>
+        </div>
+
+        <div id="orderList"></div>
+        <div id="report"></div>
+    </article>
+</section>
+
+<!-- Front Desk -->
+<section id="staff" class="hide">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">STAFF OPERATIONS</p>
+            <h2>Front-desk console</h2>
+            <p class="muted">Manage patient records, reports and delivery operations.</p>
+        </div>
+    </div>
+
+    <article id="login">
+        <div class="card-number">01</div>
+        <h3>Staff Authentication</h3>
+
+        <label for="email">Staff email</label>
+        <input id="email" type="email" value="desk@labflow.demo" autocomplete="username">
+
+        <label for="password">Password</label>
+        <input id="password" type="password" value="LabflowDemo!2026" autocomplete="current-password">
+
+        <button id="signin" type="button">Sign In →</button>
+    </article>
+
+    <div id="console" class="hide">
+        <div id="metrics" class="metrics"></div>
+
+        <article>
+            <p class="eyebrow">PATIENT MANAGEMENT</p>
+            <h3>Search patient / order</h3>
+            <div class="row">
+                <input id="query" type="search" placeholder="Search by name, mobile or order reference">
+                <button id="search" type="button">Search</button>
+            </div>
+            <div id="matches"></div>
+        </article>
+
+        <article>
+            <p class="eyebrow">DATA MANAGEMENT</p>
+            <h3>Import LIS CSV</h3>
+            <p class="muted">Upload laboratory information system records.</p>
+            <input type="file" id="csv" accept=".csv,text/csv">
+            <button id="import" type="button">Import CSV</button>
+            <p id="importMsg" class="hint"></p>
+        </article>
+
+        <article>
+            <p class="eyebrow">SYSTEM MONITORING</p>
+            <h3>Delivery & Access Logs</h3>
+            <p class="muted">Monitor report delivery events, access activity and critical callbacks.</p>
+
+            <button id="refresh" type="button">↻ Refresh Logs</button>
+
+            <div id="logs"></div>
+        </article>
+    </div>
+</section>
+
+<!-- Doctor Portal -->
+<section id="doctor" class="hide">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">REFERRING DOCTOR SERVICES</p>
+            <h2>Doctor Portal</h2>
+            <p class="muted">Secure access to your assigned patients' signed reports from the last 90 days.</p>
+        </div>
+    </div>
+
+    <article id="doctorLogin">
+        <div class="card-number">01</div>
+        <h3>Doctor Authentication</h3>
+
+        <label for="doctorName">Doctor name</label>
+        <select id="doctorName">
+            <option value="Dr. S. Ramanaiah">Dr. S. Ramanaiah</option>
+            <option value="Dr. P. Anitha">Dr. P. Anitha</option>
+            <option value="Dr. K. Suresh">Dr. K. Suresh</option>
+        </select>
+
+        <label for="doctorPassword">Password</label>
+        <input id="doctorPassword" type="password" placeholder="Enter doctor password">
+
+        <button id="doctorSignin" type="button">Doctor Sign In →</button>
+    </article>
+
+    <div id="doctorConsole" class="hide">
+        <article>
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">REPORT ACCESS</p>
+                    <h3 id="doctorWelcome">Assigned Patient Reports</h3>
+                    <p class="muted">Signed reports from the last 90 days.</p>
+                </div>
+                <button id="doctorRefresh" type="button">↻ Refresh</button>
+            </div>
+
+            <div id="doctorMetrics" class="metrics"></div>
+            <div id="doctorReports"></div>
+        </article>
+    </div>
+</section>
+
+<!-- Pathologist Portal -->
+<section id="pathologist" class="hide">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">CLINICAL QUALITY REVIEW</p>
+            <h2>Pathologist Portal</h2>
+            <p class="muted">Review patient summaries and record clinical decisions.</p>
+        </div>
+    </div>
+
+    <article id="pathologistLogin">
+        <h3>Pathologist Authentication</h3>
+
+        <label for="pathologistName">Pathologist name</label>
+        <input id="pathologistName" type="text" value="Dr. Meera Pathologist">
+
+        <label for="pathologistPassword">Password</label>
+        <input id="pathologistPassword" type="password" placeholder="Enter password">
+
+        <button id="pathologistSignin" type="button">Pathologist Sign In →</button>
+    </article>
+
+    <div id="pathologistConsole" class="hide">
+        <article>
+            <div class="section-heading">
+                <div>
+                    <h3>Pending Summary Reviews</h3>
+                    <p class="muted">Review and approve or reject summaries.</p>
+                </div>
+                <button id="pathologistRefresh" type="button">Refresh</button>
+            </div>
+
+            <div id="pathologistMetrics" class="metrics"></div>
+            <div id="pathologistReviews"></div>
+        </article>
+    </div>
+</section>
+<footer>
+    <b>LAB<span>FLOW</span></b>
+    <p>Secure diagnostic report delivery portal.</p>
+    <small>Fictional demo records · Not for clinical use</small>
+</footer>
+```
+
+</main>
+
+<div id="toast" role="status" aria-live="polite"></div>
+
+<!-- Cache-busted application JavaScript -->
+
+<script src="/static/app.js?v=20261106"></script>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+*.db
+.pytest_cache/
+staff-*.pdf
+
+# Backup files
+*.backup
+*.bak
+backup_before_consent/
+main.py.before_callback_fix
+
+# Generated archives
+LABFLOW_TDD_Source.zip
+
+LABFLOW_Final_Submission.zip
