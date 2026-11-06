@@ -1,6 +1,9 @@
 # LABFLOW
 ## Technical Design Document (TDD)
 
+**GitHub Repository:** https://github.com/Vivek-41-Thakare/LABFLOW
+**Submission Type:** Development MVP
+
 **Project:** LABFLOW — Diagnostic Report Delivery Portal
 **Organization:** Isocode Labs
 **Document Type:** Technical Design Document
